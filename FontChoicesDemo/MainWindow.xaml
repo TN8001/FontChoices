@@ -1,0 +1,49 @@
+﻿<Window
+  x:Class="FontChoicesDemo.MainWindow"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:font="clr-namespace:FontChoices;assembly=FontChoices"
+  Title="FontChoicesDemo"
+  Width="525"
+  Height="550">
+  <ScrollViewer>
+    <StackPanel>
+      <GroupBox Margin="5" Header="このフォントが変わります（直指定）">
+        <TextBox
+          FontFamily="{Binding SelectedFontFamily, ElementName=fontPicker}"
+          FontSize="{Binding SelectedFontSize, ElementName=fontPicker}"
+          FontStretch="{Binding SelectedFontStretch, ElementName=fontPicker}"
+          FontStyle="{Binding SelectedFontStyle, ElementName=fontPicker}"
+          FontWeight="{Binding SelectedFontWeight, ElementName=fontPicker}"
+          Text="abcABCあア亜" />
+      </GroupBox>
+      <GroupBox Margin="5" Header="このフォントが変わります（ViewModel経由）">
+        <TextBox
+          FontFamily="{Binding Family}"
+          FontSize="{Binding Size}"
+          FontStretch="{Binding Stretch}"
+          FontStyle="{Binding Style}"
+          FontWeight="{Binding Weight}"
+          Text="abcABCあア亜" />
+      </GroupBox>
+      <GroupBox Margin="5" Header="FontPickerコントロールライブラリ">
+        <font:FontPicker
+          x:Name="fontPicker"
+          SelectedFontFamily="{Binding Family}"
+          SelectedFontSize="{Binding Size}"
+          SelectedFontStretch="{Binding Stretch}"
+          SelectedFontStyle="{Binding Style}"
+          SelectedFontWeight="{Binding Weight}" />
+      </GroupBox>
+      <GroupBox Margin="5" Header="FontDialogコントロールライブラリ">
+        <StackPanel Margin="5">
+          <Button
+            HorizontalAlignment="Left"
+            Click="Button_Click"
+            Content="フォントの選択" />
+          <TextBlock Text="FontPickerをラップしただけ&#xa;モーダルダイアログは好みでないので適当です" TextWrapping="Wrap" />
+        </StackPanel>
+      </GroupBox>
+    </StackPanel>
+  </ScrollViewer>
+</Window>

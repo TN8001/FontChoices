@@ -1,0 +1,34 @@
+﻿<Window
+  x:Class="FontChoices.FontDialog"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:l="clr-namespace:FontChoices"
+  Title="フォントを選択"
+  ResizeMode="NoResize"
+  SizeToContent="WidthAndHeight"
+  SnapsToDevicePixels="True"
+  WindowStartupLocation="CenterOwner">
+  <Grid MinWidth="350">
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <l:FontPicker x:Name="fontPicker" />
+    <StackPanel
+      Grid.Row="1"
+      HorizontalAlignment="Right"
+      Orientation="Horizontal">
+      <Button
+        MinWidth="80"
+        Margin="5"
+        Click="Button_Click"
+        Content="OK"
+        IsDefault="True" />
+      <Button
+        MinWidth="80"
+        Margin="5"
+        Content="Cancel"
+        IsCancel="True" />
+    </StackPanel>
+  </Grid>
+</Window>

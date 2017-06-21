@@ -1,0 +1,140 @@
+﻿<UserControl
+  x:Class="FontChoices.FontPicker"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:l="clr-namespace:FontChoices"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+  d:DesignHeight="350"
+  d:DesignWidth="350"
+  mc:Ignorable="d">
+  <UserControl.Resources>
+    <l:FontFamily2TypefacesConverter x:Key="FontFamily2TypefacesConverter" />
+    <l:DefaultFontFamilyConverter x:Key="DefaultFontFamilyConverter" />
+    <DataTemplate DataType="{x:Type l:TypefaceJP}">
+      <TextBlock
+        Margin="3"
+        VerticalAlignment="Center"
+        Text="{Binding FaceNameJP}" />
+    </DataTemplate>
+  </UserControl.Resources>
+  <Border Name="baseContainer">
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition />
+      </Grid.RowDefinitions>
+      <Label
+        Margin="5,5,5,0"
+        Padding="0"
+        Content="フォントファミリー(M)"
+        Target="{Binding ElementName=combo}" />
+      <ComboBox
+        x:Name="combo"
+        Grid.Row="1"
+        MinHeight="28"
+        Margin="5,0,5,5"
+        VerticalAlignment="Top"
+        HorizontalContentAlignment="Stretch"
+        ItemsSource="{Binding SystemFonts}"
+        SelectedItem="{Binding SelectedFontFamily, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type l:FontPicker}}}">
+        <ComboBox.ItemsPanel>
+          <ItemsPanelTemplate>
+            <VirtualizingStackPanel CanVerticallyScroll="True" Orientation="Vertical" />
+          </ItemsPanelTemplate>
+        </ComboBox.ItemsPanel>
+        <ComboBox.ItemContainerStyle>
+          <Style TargetType="{x:Type ComboBoxItem}">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+          </Style>
+        </ComboBox.ItemContainerStyle>
+        <ComboBox.ItemTemplate>
+          <DataTemplate>
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition />
+              </Grid.ColumnDefinitions>
+              <TextBlock
+                Name="text"
+                Margin="3"
+                VerticalAlignment="Center"
+                ClipToBounds="True"
+                Text="{Binding}" />
+              <Viewbox
+                Grid.Column="1"
+                Height="{Binding ActualHeight, ElementName=text, Mode=OneWay}"
+                Margin="3"
+                VerticalAlignment="Center"
+                StretchDirection="DownOnly">
+                <TextBlock FontFamily="{Binding Mode=OneWay, Converter={StaticResource DefaultFontFamilyConverter}}" Text="Aa01あア亜" />
+              </Viewbox>
+            </Grid>
+          </DataTemplate>
+        </ComboBox.ItemTemplate>
+      </ComboBox>
+      <Grid Grid.Row="2">
+        <Grid.RowDefinitions>
+          <RowDefinition />
+          <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Label
+          Margin="5,5,5,0"
+          Padding="0"
+          Content="タイプフェイス(_T)"
+          Target="{Binding ElementName=TypefaceComboBox}" />
+        <Label
+          Grid.Column="1"
+          Margin="5,5,5,0"
+          Padding="0"
+          Content="フォントサイズ(_Z)"
+          Target="{Binding ElementName=FontSizeUpDown}" />
+        <ComboBox
+          x:Name="TypefaceComboBox"
+          Grid.Row="1"
+          MinHeight="28"
+          Margin="5,0,5,5"
+          ItemsSource="{Binding SelectedItem, NotifyOnTargetUpdated=True, Converter={StaticResource FontFamily2TypefacesConverter}, ElementName=combo}"
+          SelectedItem="{Binding SelectedTypeface, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type l:FontPicker}}}"
+          TargetUpdated="TypefaceComboBox_TargetUpdated" />
+        <xctk:DoubleUpDown
+          x:Name="FontSizeUpDown"
+          Grid.Row="1"
+          Grid.Column="1"
+          Margin="5,0,5,5"
+          VerticalAlignment="Center"
+          Minimum="1"
+          Value="{Binding SelectedFontSize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type l:FontPicker}}}" />
+      </Grid>
+      <Label
+        Grid.Row="3"
+        Margin="5,5,5,0"
+        Padding="0"
+        Content="フォントサンプル(_P)"
+        Target="{Binding ElementName=textBox}" />
+      <TextBox
+        x:Name="textBox"
+        Grid.Row="4"
+        MinHeight="80"
+        Margin="5,0,5,5"
+        AcceptsReturn="True"
+        AcceptsTab="True"
+        FontFamily="{Binding SelectedFontFamily, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type l:FontPicker}}}"
+        FontSize="{Binding SelectedFontSize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type l:FontPicker}}}"
+        FontStretch="{Binding SelectedFontStretch, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type l:FontPicker}}}"
+        FontStyle="{Binding SelectedFontStyle, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type l:FontPicker}}}"
+        FontWeight="{Binding SelectedFontWeight, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type l:FontPicker}}}"
+        HorizontalScrollBarVisibility="Auto"
+        Text="012abcABCｱｲｳ&#xa;０１２ａｂｃＡＢＣ&#xa;アイウあいう安以宇"
+        VerticalScrollBarVisibility="Auto" />
+    </Grid>
+  </Border>
+</UserControl>
