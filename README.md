@@ -1,16 +1,18 @@
-# FontChoices
-![�A�v���X�N���[���V���b�g](https://github.com/TN8001/FontChoices/blob/master/AppImage.png)
-## �T�v
-WPF�pFontPicker&FontDialog
-## ����
-�M�����Ȃ��ł���WPF�ɂ�FontDialog������܂���B  
-NuGet���悭���ׂ�Ηǂ����̂����邩������܂��񂪁A�����p�ɍ��܂����B  
-�������f�ł���FontPicker�����C���ł��BFontDialog�͂��܂��ł��i���[�_���͍D�݂łȂ��̂Ŏ��͎g���Ă��܂���j
-## �g����
-FontChoicesDemo�v���W�F�N�g���Q�Ƃ̂��ƁB
-## ���C�Z���X
-[MIT](https://github.com/TN8001/FontChoices/blob/master/LICENSE)
-## ���ӎ���
-* ��ؐӔC�͎����܂���
-* Style�EWeight�EStretch��FontPicker�֐ݒ�͂ł��܂��� �擾�݂̂ł�
-* UpDown�����̂��߂�Extended WPF Toolkit���Q�Ƃ��Ă��܂��Ă��܂��B�iUpDown�ʂȂ玩���ō���Ă�������ł��� �ǂ���ColorPicker�����g�����Ƃ������̂ŁB�B�BColorPicker�͎��삷��C�͂��Ȃ��j
+﻿# FontChoices
+![アプリスクリーンショット](AppImage.png)
+## 概要
+WPF用FontPicker&FontDialog
+## 特徴
+信じられないですがWPFにはFontDialogがありません。  
+NuGetをよく調べれば良いものがあるかもしれませんが、自分用に作りました。  
+即時反映できるFontPickerがメインです。FontDialogはおまけです（モーダルは好みでないので私は使っていません）
+## 使い方
+FontChoicesDemoプロジェクトを参照のこと。
+## ライセンス
+CC0 1.0 Universal
+
+[![CC0](http://i.creativecommons.org/p/zero/1.0/88x31.png)](LICENSE)
+## 注意事項
+* 一切責任は持ちません
+* Style・Weight・StretchはFontPickerへ設定はできません 取得のみです
+* UpDownだけのためにExtended WPF Toolkitを参照してしまっています。（UpDown位なら自分で作ってもいいんですが どうせColorPicker等も使うことが多いので。。。ColorPickerは自作する気はしない）
